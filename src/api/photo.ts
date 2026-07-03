@@ -1,4 +1,4 @@
-import request, { uploadFile } from "@/utils/request";
+import { uploadFile } from "@/utils/request";
 import Method from "@/enums/Method";
 
 /**
@@ -11,18 +11,6 @@ export const GeneratePhoto = (data: any, name: string, path: string): Promise<an
 }
 
 
-/**
- * 证件照规格Api
- * @returns 
- */
-export const GetPhotoSize = (): Promise<any> => {
-  return request("/item/list", {
-    data: { key: "nMBnm_L2MxdXN-UIApF11tNExznpE82b" },
-    method: Method.POST, remoteUrl: "https://api.zheyings.cn",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" }
-  },
-  )
-}
 /**
  * 添加背景色
  * @returns 

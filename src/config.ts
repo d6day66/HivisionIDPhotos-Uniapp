@@ -5,19 +5,19 @@ interface EnvironmentConfig {
 const baseApi: { [key: string]: EnvironmentConfig } = {
   // 开发版
   development: {
-    // host: "http://localhost:8080",
+    host: "https://photo-api.ghcbx.cn",
   },
   // 体验版
   trial: {
-     host: "https://yourdomian.com",
+    host: "https://photo-api.ghcbx.cn",
   },
   // 正式版
   release: {
-     host: "https://yourdomian.com",
+    host: "https://photo-api.ghcbx.cn",
   },
   // uniapp 正式环境
   production: {
-    host: "https://yourdomian.com",
+    host: "https://photo-api.ghcbx.cn",
   },
 };
 // 环境
