@@ -184,15 +184,7 @@ export default class Index extends Vue {
 	goToGenerate() {
 		const { mmHeight, mmWidth, customSizeForm: { height, width, dpi }, setPhotoSize } = this
 
-		this.sizeForm.validate((valid: boolean) => {
-			if (valid) {
-
-			} else {
-				uni.showToast({
-					title: "请按照规则填写宽度和高度"
-				})
-			}
-		}).then(() => {
+		this.sizeForm.validate().then(() => {
 			const photoSize: PhotoSize = {
 				name:"自定义尺寸",
 				pxHeight: height,
@@ -207,9 +199,10 @@ export default class Index extends Vue {
 					setPhotoSize(photoSize)
 				}
 			})
-		}).catch((error: any) => {
+		}).catch(() => {
 			uni.showToast({
-				title: error[0].message
+				title: "请按照规则填写宽度和高度",
+				icon: "none"
 			})
 		})
 	}
