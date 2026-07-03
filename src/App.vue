@@ -21,4 +21,13 @@ export default Vue.extend({
 
 <style lang="scss">
 @import "uview-ui/index.scss";
+
+/* 全局元素样式必须放在 app.wxss，避免注入组件作用域后产生非法标签选择器。 */
+page {
+    height: 100%;
+}
+
+._div {
+    box-sizing: border-box;
+}
 </style>
