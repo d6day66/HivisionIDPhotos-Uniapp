@@ -25,6 +25,9 @@ export default Vue.extend({
 /* 全局元素样式必须放在 app.wxss，避免注入组件作用域后产生非法标签选择器。 */
 page {
     height: 100%;
+    background: #fbfaf9;
+    color: #252525;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 ._div {

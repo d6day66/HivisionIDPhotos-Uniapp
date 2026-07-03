@@ -5,7 +5,7 @@
       <div class="preview-box">
         <u-image :src="imagePath" mode="aspectFit" height="1000rpx" radius="10rpx"></u-image>
       </div>
-      <u-button color="#F77261" class="bottom-box-btn" :custom-style="{ width: '240rpx', borderRadius: '20rpx' }"
+      <u-button color="#ff6b57" class="bottom-box-btn" :custom-style="{ width: '240rpx', borderRadius: '24rpx' }"
         @click="confirmSelect">确认选择</u-button>
     </u-overlay>
     <div class="photo-select-box">
@@ -47,9 +47,9 @@
     </div>
     <!-- 照片选择 -->
     <div class="bottom-box">
-      <u-button color="#F77261" :custom-style="{ width: '240rpx', borderRadius: '20rpx' }" :plain="true" text="去相册选择"
+      <u-button color="#ff6b57" :custom-style="{ width: '240rpx', borderRadius: '24rpx' }" :plain="true" text="去相册选择"
         @click="chooseImage('album')"></u-button>
-      <u-button color="#F77261" :custom-style="{ width: '240rpx', borderRadius: '20rpx' }"
+      <u-button color="#ff6b57" :custom-style="{ width: '240rpx', borderRadius: '24rpx' }"
         @click="chooseImage('camera')">去拍照</u-button>
     </div>
     <!-- 加载页 -->
@@ -204,7 +204,7 @@ $page-padding: 20rpx;
   display: flex;
   flex-direction: column;
   padding: 0 40rpx;
-  background-color: #fff;
+  background-color: #fbfaf9;
 
   &-box {
     height: calc(100% - 150rpx);
@@ -214,7 +214,7 @@ $page-padding: 20rpx;
 
     &-title {
       width: 100%;
-      border-bottom: 1px solid #DCDFE6;
+      border-bottom: 1px solid #eeeae8;
       line-height: 120rpx;
       font-size: 50rpx;
       font-weight: bold;
@@ -253,9 +253,10 @@ $page-padding: 20rpx;
   &-card {
     margin: 20rpx 0 40rpx 0;
     padding: 60rpx 40rpx;
-    border-radius: 16rpx;
+    border-radius: 28rpx;
     // background-color: #fff;
-    background-color: #F8F8F8;
+    background-color: #fff;
+    box-shadow: 0 14rpx 44rpx rgba(71, 48, 42, .07);
     color: #909399;
     display: flex;
     flex-direction: column;

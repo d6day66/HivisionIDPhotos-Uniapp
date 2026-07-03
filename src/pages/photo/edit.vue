@@ -19,7 +19,7 @@
 
     <u-form>
       <u-form-item label="是否高清" label-width="80">
-        <u-switch v-model="isHd" activeColor="#F77261"></u-switch>
+      <u-switch v-model="isHd" activeColor="#ff6b57"></u-switch>
       </u-form-item>
     </u-form>
     <div class="selection-card selection-gap">
@@ -28,9 +28,9 @@
 
     </div>
     <div class="bottom-box">
-      <u-button color="#F77261" :custom-style="{ width: '240rpx', borderRadius: '10rpx' }" :plain="true"
+      <u-button color="#ff6b57" :custom-style="{ width: '240rpx', borderRadius: '24rpx' }" :plain="true"
         @click="generateLayoutPhoto">保存冲印照片</u-button>
-      <u-button color="#F77261" :custom-style="{ width: '240rpx', borderRadius: '10rpx' }"
+      <u-button color="#ff6b57" :custom-style="{ width: '240rpx', borderRadius: '24rpx' }"
         @click="generateIDPhoto">保存证件照片</u-button>
     </div>
 
@@ -301,10 +301,14 @@ export default class PhotoEdit extends Vue {
 .photo-edit {
   height: 100%;
   padding: 0 40rpx;
+  background: #fbfaf9;
 }
 
 .selection-card {
-  padding: 20rpx 0;
+  padding: 28rpx;
+  border-radius: 28rpx;
+  background: #fff;
+  box-shadow: 0 14rpx 44rpx rgba(71, 48, 42, .07);
 
 }
 
