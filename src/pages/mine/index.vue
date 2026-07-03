@@ -29,20 +29,20 @@ export default class Index extends Vue {
 <style lang="scss">
 .mine-page {
     height: 100%;
-    background-color: #F8F8F8;
+    background-color: #fbfaf9;
 
     //头部banner背景图
     .banner {
         height: 400rpx;
         padding: 0 60rpx;
         padding-top: 60rpx;
-        background-color: #f9ebe7;
-        background-image: linear-gradient(#F77261, #f9ebe7);
+        background-color: #fff1ed;
+        background-image: linear-gradient(160deg, #ff806d, #fff4ef);
         display: flex;
         line-height: 100rpx;
         align-items: center;
         gap: 40rpx;
-        border-radius: 0 0 20rpx 20rpx;
+        border-radius: 0 0 40rpx 40rpx;
 
         &>p:first-of-type {
             font-size: 32rpx;
@@ -61,8 +61,9 @@ export default class Index extends Vue {
         width: calc(100% - (2 * $page-padding));
         margin: 0 auto;
         background-color: #fff;
-        border-radius: 20rpx;
-        padding: 20rpx;
+        border-radius: 30rpx;
+        padding: 28rpx;
+        box-shadow: 0 14rpx 44rpx rgba(71, 48, 42, .07);
     }
 
     .card {
