@@ -32,7 +32,8 @@
         <div>背景色
           <div class="color-dot-box">
 
-            <ColorDot :color="item" v-for="(item, index) in colors" :key="index" class="color-dot" />
+            <ColorDot :color="item" :border-color="item === '#FFFFFF' ? '#d9d5d2' : ''"
+              v-for="(item, index) in colors" :key="index" class="color-dot" />
           </div>
         </div>
         <div>文件大小 <span>KB</span></div>
@@ -59,7 +60,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Card from '@/components/Card.vue'
 import ColorDot from '@/components/ColorDot.vue'
 import { Component } from "vue-property-decorator";
 import { GeneratePhoto } from '@/api/photo'
@@ -68,7 +68,7 @@ import { Getter, Mutation } from 'vuex-class';
 import { Colors } from '@/model/Colors'
 import { PhotoPath } from "@/model/Interfaces";
 
-@Component({ components: { Card, ColorDot } })
+@Component({ components: { ColorDot } })
 export default class PhotoIndex extends Vue {
   form: AnyObject = {
     height: 0,

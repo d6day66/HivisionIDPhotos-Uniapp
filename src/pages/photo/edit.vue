@@ -11,8 +11,9 @@
     <div class="selection-card">
       <p>颜色</p>
       <div class="color-list">
-        <div class="color-list-item" v-for="color in colors" :style="{ 'backgroundColor': color }"
-          :borderColor="color == '#FFFFFF' ? '#DCDFE6' : ''" :key="color" :color="color"
+        <div class="color-list-item" v-for="color in colors"
+          :style="{ backgroundColor: color, borderColor: color === '#FFFFFF' ? '#d9d5d2' : 'transparent' }"
+          :key="color" :color="color"
           @click="changeBackgroudColor(color)"></div>
       </div>
     </div>
@@ -244,56 +245,98 @@ export default class PhotoEdit extends Vue {
    * 保存图片到相册
    */
   async savePhotoToAlbum(tempPath: string) {
-    //查看用户是否授权保存相册
-    // #ifndef MP-WEXIN
-    uni.authorize({
-      scope: 'scope.writePhotosAlbum',
-      success() {
-        uni.showLoading({
-          title: '加载中'
-        });
-        // #endif
-        //保存临时文件到相册
-        uni.saveImageToPhotosAlbum({
-          filePath: tempPath,
-          success() {
+    const saveImage = () => {
+      uni.showLoading({
+        title: '保存中...'
+      });
+
+      uni.saveImageToPhotosAlbum({
+        filePath: tempPath,
+        success() {
+          uni.showToast({
+            title: "保存成功",
+            content: `图片已保存成功,快去相册看看吧~`,
+            duration: 3000
+          });
+        },
+        fail(err) {
+          const { errMsg } = err
+          if (errMsg === 'saveImageToPhotosAlbum:fail cancel') {
             uni.showToast({
-              title: "保存成功",
-              content: `图片已保存成功,快去相册看看吧~`,
-              duration: 5000
+              title: "已取消保存",
+              icon: 'none'
             });
+          }
+          else {
+            console.error("保存文件时发生异常", err);
+            uni.showModal({
+              title: "保存失败",
+              content: `保存发生了异常，请稍后再试~`,
+              showCancel: false,
+            });
+          }
+        },
+        complete() {
+          uni.hideLoading()
+        }
+      })
+    }
+
+    const showAlbumAuthGuide = () => {
+      uni.showModal({
+        title: "需要相册权限",
+        content: "请在微信授权设置中开启“保存到相册”，开启后再点保存即可。",
+        confirmText: "去开启",
+        cancelText: "取消",
+        success(res) {
+          if (!res.confirm) {
+            return
+          }
+          uni.openSetting({
+            success(settingRes) {
+              if (settingRes.authSetting['scope.writePhotosAlbum']) {
+                saveImage()
+              }
+              else {
+                uni.showToast({
+                  title: "未开启相册权限",
+                  icon: 'none'
+                })
+              }
+            }
+          })
+        }
+      })
+    }
+
+    uni.getSetting({
+      success(res) {
+        const albumAuth = res.authSetting['scope.writePhotosAlbum']
+
+        if (albumAuth === true) {
+          saveImage()
+          return
+        }
+
+        if (albumAuth === false) {
+          showAlbumAuthGuide()
+          return
+        }
+
+        uni.authorize({
+          scope: 'scope.writePhotosAlbum',
+          success() {
+            saveImage()
           },
-          fail(err) {
-            const { errMsg } = err
-            if (errMsg === 'saveImageToPhotosAlbum:fail cancel') {
-              uni.showToast({
-                title: "保存失败",
-                content: `您取消了保存到相册哦~`
-              });
-            }
-            else {
-              console.error("保存文件时发生异常", err);
-              uni.showModal({
-                title: "保存失败",
-                content: `保存发生了异常,保存失败了哦~`
-              });
-            }
+          fail() {
+            showAlbumAuthGuide()
           }
         })
-        // #ifndef MP-WEXIN
       },
       fail() {
-        uni.showModal({
-          title: "保存失败",
-          content: `用户未授权相册权限,保存失败了哦~`,
-          showCancel: false,
-        });
-      },
-      complete() {
-        uni.hideLoading()
+        saveImage()
       }
     })
-    // #endif
   }
 }
 </script>

@@ -9,6 +9,7 @@ export const a = [
 export const Colors = [
   "#428eda",
   "#D9001B", //红底
+  "#FFFFFF", //白底
   "#539fed",
   "#b3b3b3",
   "#ac020b",

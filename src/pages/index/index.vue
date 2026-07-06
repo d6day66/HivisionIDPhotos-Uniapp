@@ -78,8 +78,8 @@ const DPICoefficient = 25.4
 @Component
 export default class Index extends Vue {
   heroBanners = [
-    '/static/home-hero-reference.png',
-    '/static/home-hero-white-suit.png'
+    '/static/home-hero-reference.jpg',
+    '/static/home-hero-white-suit.jpg'
   ]
   hostList = photoSizes.slice(0, 10)
   customSize = false
